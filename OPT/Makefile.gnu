@@ -13,11 +13,12 @@ FLONG	=
 #
 #
 NOLINK= -c
+CLIBS  = -lm
 #
 all: OPT_C.exe OPT_F.exe
 
 OPT_C.exe: opt_c.o timing.o dummy.o
-	$(CC) $(COMP) -o $@ $^
+	$(CC) $(COMP) -o $@ $^ $(CLIBS)
 
 OPT_F.exe: opt_f.o timing.o dummy.o
 	$(F90) $(FOMP) -o $@ $^
