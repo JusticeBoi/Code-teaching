@@ -1,11 +1,22 @@
 program optimize
   
-  integer, parameter :: N=2000
+  integer N
 
-  double precision, dimension(N,N) :: mat,s
+  double precision, dimension(:,:), allocatable :: mat,s
   double precision :: val,wct_start,wct_end,cput_start,cput_end,runtime
   integer :: i,j,R,iter
-  integer, dimension(N) :: v
+  integer, dimension(:), allocatable :: v
+  character(len=32) :: bin,arg
+
+  call get_command_argument(0, bin)
+  call get_command_argument(1, arg)
+  if (len_trim(arg) == 0) then
+    write(*,*) "Usage: ",bin," <size>"
+    stop
+  endif
+
+  read(arg,*) N
+  allocate(mat(N,N),s(N,N),v(N))
 
   do i=1,N
      v(i) = i
