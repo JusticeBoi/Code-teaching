@@ -99,7 +99,7 @@ void calc_tile(int size, int xstart, int ystart, int tilesize, char* tile)
 
 int main(int argc, char** argv)
 {
-  int size=2000,tilesize=200,xtiles,ytiles,xc,yc,count,tilebase,i;
+  int size=4000,tilesize=400,xtiles,ytiles,xc,yc,count,tilebase,i;
   char *tile, *picture;
   double ws,we,cs,ce;
 

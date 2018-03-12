@@ -7,8 +7,8 @@ F90	= ifort
 CC	= icc
 #
 #
-COMP	= #-qopenmp
-FOMP	= #-qopenmp
+COMP	= -qopenmp
+FOMP	= -qopenmp
 COPTS	=  -O3 -xHOST -fno-alias
 FOPTS	=  -O3 -xHOST -fno-alias
 FLONG	= -132

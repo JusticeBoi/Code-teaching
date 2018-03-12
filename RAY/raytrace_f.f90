@@ -115,7 +115,7 @@ end module mod_raytracef
 program raytracef
   use mod_raytracef
   implicit none
-  integer, parameter :: size = 2000, tilesize = 200
+  integer, parameter :: size = 4000, tilesize = 400
   integer :: xtiles, ytiles, xc, yc, count, tilebase, ix, iy
   integer(kind=is) :: picture(size, size), tile(tilesize,tilesize)
   character(len=1) :: cc
@@ -128,9 +128,7 @@ program raytracef
   do yc = 0, xtiles - 1
      do xc = 0, xtiles - 1
         call calc_tile(size, xc*tilesize, yc*tilesize, tilesize, &
-!             tile)
              picture(xc*tilesize + 1, yc*tilesize + 1))
-!        picture(xc*tilesize + 1:(xc+1)*tilesize,yc*tilesize + 1:(yc+1)*tilesize) = tile
      end do
   end do
   call timing(wcend,cpuend)
@@ -140,12 +138,6 @@ program raytracef
   open(unit=20, file='result.pnm', access='STREAM', form='FORMATTED', status='UNKNOWN')
   write(20, fmt='(''P5'',/,i0,1x,i0,/,i0)') size, size, 255
   write(20, fmt=*) transfer(picture,cc,size**2)
-!  do iy = 1, size
-!     do ix = 1, size
-!        write(20, fmt='(A1)', advance='NO') transfer(picture(ix,iy),cc)
-!        write(20, fmt='(I0, 1x)', advance='NO') picture(ix,iy)
-!    end do
-!  end do
   close(20)
   write(*, *) '... done.'
 end program raytracef
