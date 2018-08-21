@@ -7,7 +7,7 @@ program scan
   double precision :: delta_x,x,sum,Pi
 
 
-  delta_x = 1.d0/....
+  delta_x = 1.d0/SLICES
   
   call timing(wctstart,cpustart)
 
