@@ -16,7 +16,8 @@ CPP      = icpc
 #CPP		   = pgc++
 
 ######## DEFINE COMPILER FLAGS ################################
-CFLAGS       = -Ofast -DSET_C=16
+# chunk sizes specialized up to 32, use SET_C to add one more
+CFLAGS       = -Ofast #-DSET_C=16
 
 VERBOSEFLAGS = -DVERBOSE
 
@@ -32,7 +33,7 @@ ifeq "$(CC)" "gcc"
 	ARCHFLAGS    += -march=native
 else ifeq "$(CC)" "icc"
 	VERBOSEFLAGS += -g -Wall -ansi
-	ARCHFLAGS    += -xCORE-AVX512
+	ARCHFLAGS    += -xHost
 else ifeq "$(CC)" "clang"
 	VERBOSEFLAGS += -g -Wall -ansi
 else ifeq "$(CC)" "pgcc"
