@@ -148,7 +148,6 @@ main()
 #endif
 
     /* Get initial value for system clock. */
-//#pragma omp parallel for
     for (j=0; j<N; j++) {
 	a[j] = 1.0;
 	b[j] = 2.0;
