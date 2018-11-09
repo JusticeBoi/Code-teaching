@@ -17,10 +17,19 @@ implicit none
 double precision :: wct_start,wct_end,cput_start,cput_end,runtime,r
 integer :: iter,size,i,j,k,n,t0,t1,t,ofs
 double precision, dimension(:,:,:,:), allocatable :: phi 
+integer :: argc
+character(len=1000) :: arg
 
-print *,'Size?'
-read(*,*) size
+argc = command_argument_count()
 
+if(argc.eq.1) then
+  call get_command_argument(1,arg)
+  read(arg, '(i)') size
+else
+  print *, 'Usage: ./a.out <size>'
+  stop
+endif
+ 
 allocate(phi(1:size,1:size,1:size,0:1))
 
 t0=0; t1=1
