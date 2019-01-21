@@ -1,0 +1,21 @@
+INTRODUCTION
+This is a demo for timing routine for C and Fortran.
+
+It should run on any Linux X86 system. The X86 dependency is due to the usage
+of the RDTSC instruction. The simple version based on clock_gettime should run
+on any processor architecture.
+
+The simple variant is based on calling clock_gettime while the advanced version
+is a C module for measuring cycle counts based on the RDTSC instruction.
+
+There is a C example showing the simple and advanced timing routines and a F90
+example linking against the simple timing routine.
+
+BUILD
+The Makefile uses the Intel compiler as default and expects icc and ifort in your PATH.
+You can adopt include_ICC.mk or add another one if you want to use another
+compiler.  Which include file is used is specified by setting the TAG variable
+at the top of the Makefile.
+
+RUNNING
+Just call timing-ICC :-). The demos call sleep(3) and display the measured time.
