@@ -61,7 +61,7 @@ do
 
    call timing(wct_end, cput_end)
    runtime = wct_end-wct_start
-   if(runtime.ge.0.2) exit
+   if(runtime.ge.2.5d0) exit
    iter = iter * 2
 enddo
 
