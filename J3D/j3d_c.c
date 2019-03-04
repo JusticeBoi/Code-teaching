@@ -12,6 +12,7 @@ void jacobi_line(double* d, const double* s,
                  const double* top, const double* bottom,
                  const double* front, const double* back, int n) {
                  int i,start=1;
+#pragma omp simd
                  for(i=1; i<n-1; ++i) {
                      d[i] = oos*(s[i-1]+s[i+1]+top[i]+bottom[i]+front[i]+back[i]);
                  }
@@ -36,22 +37,24 @@ int main(int argc, char** argv) {
   t0=0; t1=1;
 
   /* initialize w/ random numbers */
+#pragma omp parallel private(j,ofs,k)
   for(i=0; i<size; ++i) {
     for(j=0; j<size; ++j) {
       ofs = i*size*size + j*size;
       for(k=0; k<size; ++k) {
-	phi[t1][ofs+k] = phi[t0][ofs+k] = rand()/(double)RAND_MAX;
+	phi[t1][ofs+k] = phi[t0][ofs+k] = i/(double)RAND_MAX;
       }
     }
   }	  
 
   iter=1;
   runtime=0.0;
-  while(runtime<0.5) {
+  while(runtime<1.5 /*&& iter < 16*/ ) {
 
   // time measurement
   timing(&wct_start, &cput_start);
   for(n=0; n<iter; n++) {
+#pragma omp parallel for private(j,ofs)
     for(i=1; i<size-1; ++i) {
       for(j=1; j<size-1; ++j) {
         ofs = i*size*size + j*size;
