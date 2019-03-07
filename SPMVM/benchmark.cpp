@@ -147,8 +147,9 @@ int main(int argc, char *argv[])
     }
 
     /******SELL*******************************************************/
-    if(0) {
+    /*if(1)*/ {
 
+    std::cout << "Doing SELL-C-sigma..." << std::endl;
     int C = 4;
     if (argc > 2)
         C = std::atoi(argv[2]);
@@ -157,8 +158,10 @@ int main(int argc, char *argv[])
     if (argc > 3)
         sigma = std::atoi(argv[3]);
 
+    std::cout << "Ctor matrix..." << std::endl;
 
     SellCSigma_Matrix sell_matrix(mmMatrix, C, sigma);
+    std::cout << "Ctor matrix done..." << std::endl;
 
     double const * val       = sell_matrix.getValues();
     int const * colInd       = sell_matrix.getColInd();
@@ -203,6 +206,7 @@ int main(int argc, char *argv[])
         LIKWID_MARKER_START("SpMV_SELL-C-SIGMA");
 }
 #endif
+    std::cout << "Starting loop..." << std::endl;
 
         for (int i=0; i<revisions; ++i)
         {

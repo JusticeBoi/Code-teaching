@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 
   iter=1;
   runtime=0.0;
-  while(runtime<2.5) {
+  while(runtime<1.5 /*&& iter < 16*/ ) {
 
   // time measurement
   timing(&wct_start, &cput_start);

@@ -1,0 +1,8 @@
+1) Compile program by calling
+        CXX=<compiler icpc or g++> make
+
+2) Run tests by running
+        ./test
+
+3) Run performance tests by running 
+        ./perf <grid size y> <grid size x>

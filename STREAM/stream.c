@@ -41,7 +41,7 @@
 /*  5. Absolutely no warranty is expressed or implied.                   */
 /*-----------------------------------------------------------------------*/
 # include <stdio.h>
-# include <math.h>
+//# include <math.h>
 # include <float.h>
 # include <limits.h>
 # include <sys/time.h>

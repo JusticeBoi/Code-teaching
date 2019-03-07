@@ -9,9 +9,9 @@ void dummy(double*, double*);
 
 const double oos=1./6.;
 
-void jacobi_line(double* d, const double* s,
-                 const double* top, const double* bottom,
-                 const double* front, const double* back, int n) {
+void jacobi_line(double* d, double* s,
+                 double* top, double* bottom,
+                 double* front, double* back, int n) {
                  int i,start=1;
 //#pragma vector nontemporal
                  for(i=1; i<n-1; ++i) {
