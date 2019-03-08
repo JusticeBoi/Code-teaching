@@ -21,6 +21,13 @@
 #define MAX(x,y) ((x)>(y)?(x):(y))
 #endif
 
+typedef enum benchmark {
+    COPY = 0,
+    TRIAD,
+    NUMBENCH
+} benchmark;
+
+
 
 int main (int argc, char** argv)
 {
@@ -55,43 +62,19 @@ int main (int argc, char** argv)
         c[i] = 0.0;
     }
 
-    S = getTimeStamp();
-#pragma omp parallel for
-    for (int i=0; i<N; i++) {
-        a[j] = 2.0E0 * a[j];
-    }
-    E = getTimeStamp();
+    /* S = getTimeStamp(); */
+/* #pragma omp parallel for */
+    /* for (int i=0; i<N; i++) { */
+    /*     a[j] = 2.0E0 * a[j]; */
+    /* } */
+    /* E = getTimeStamp(); */
 
     printf(HLINE);
 
-    scalar = 3.0;
-
     for ( int k=0; k < NTIMES; k++) {
 
-        S = getTimeStamp();
-#pragma omp parallel for
-        for (int i=0; i<N; i++) {
-            c[j] = a[j];
-        }
-        E = getTimeStamp();
-        times[COPY][k] = E-S;
-
-        S = getTimeStamp();
-#pragma omp parallel for
-        for (int i=0; i<N; i++) {
-            a[i] = b[i] + scalar * c[i];
-        }
-        E = getTimeStamp();
-        times[TRIAD][k] = E-S;
-
-        S = getTimeStamp();
-#pragma omp parallel for
-        for (int i=0; i<N; i++) {
-            a[i] = b[i] + c[i] * d[i];
-        }
-        E = getTimeStamp();
-        times[STRIAD][k] = E-S;
-
+        times[COPY][k] = copy(a, b, N);
+        times[TRIAD][k] = triad(a, b, c, N);
     }
 
     for (k=1; k<NTIMES; k++) {
