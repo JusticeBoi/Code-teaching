@@ -1,4 +1,4 @@
-TAG = CLANG
+TAG = ICC
 
 #CONFIGURE BUILD SYSTEM
 TARGET	   = bwbench-$(TAG)

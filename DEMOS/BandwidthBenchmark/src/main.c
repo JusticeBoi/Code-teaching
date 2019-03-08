@@ -91,9 +91,9 @@ int main (int argc, char** argv)
 
 #ifdef _OPENMP
     printf(HLINE);
-#pragma omp parallel private(k)
+#pragma omp parallel
     {
-        k = omp_get_num_threads();
+        int k = omp_get_num_threads();
         printf ("Number of Threads requested = %i\n",k);
     }
 #endif
