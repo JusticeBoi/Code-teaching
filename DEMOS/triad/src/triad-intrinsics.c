@@ -22,11 +22,11 @@ triad_intrinsics(
     S = getTimeStamp();
     for(int j = 0; j < iter; j++) {
         for(int i = 0; i < N; i+= 4) {
-            srcB = __mm256_loadu_pd(B+i);
-            srcC = __mm256_loadu_pd(C+i);
-            srcD = __mm256_loadu_pd(D+i);
-            dst = __mm256_fmadd_pd(srcB, srcC, srcD);
-            __mm256_store_pd(D+i, dst);
+            srcB = _mm256_loadu_pd(B+i);
+            srcC = _mm256_loadu_pd(C+i);
+            srcD = _mm256_loadu_pd(D+i);
+            dst = _mm256_fmadd_pd(srcB, srcC, srcD);
+            _mm256_store_pd(A+i, dst);
         }
     }
     E = getTimeStamp();
