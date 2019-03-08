@@ -1,7 +1,7 @@
-TAG = ICC
+TAG = CLANG
 
 #CONFIGURE BUILD SYSTEM
-TARGET	   = timing-$(TAG)
+TARGET	   = bwbench-$(TAG)
 BUILD_DIR  = ./$(TAG)
 SRC_DIR    = ./src
 MAKE_DIR   = ./
