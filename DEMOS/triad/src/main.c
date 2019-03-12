@@ -20,6 +20,8 @@
 #endif
 
 extern double triad(double*, double*, double*, double*, int, int);
+extern double triad_intrinsics(double*, double*, double*, double*, int, int);
+extern double triad_asm(double*, double*, double*, double*, int, int);
 
 int main (int argc, char** argv)
 {
