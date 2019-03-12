@@ -1,9 +1,11 @@
-#include <stdio.h>
+#include <x86intrin.h>
 
 #include <timing.h>
 
+extern double triad_asm(int, double*, const double* restrict, const double* restrict, const double* restrict);
+
 double
-triad(
+triad_wrapper(
               double* restrict A,
         const double* restrict B,
         const double* restrict C,
@@ -15,11 +17,7 @@ triad(
 
     S = getTimeStamp();
     for(int j = 0; j < iter; j++) {
-        for(int i = 0; i < N; i++) {
-            A[i] = B[i] + D[i] * C[i];
-        }
-
-        if (A[N-1] > 20) printf("Ai = %f\n",A[N-1]);
+        triad_asm(N, A, C, D, B);
     }
     E = getTimeStamp();
 

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <x86intrin.h>
 
 #include <timing.h>
@@ -10,8 +9,8 @@ triad_intrinsics(
         const double* restrict B,
         const double* restrict C,
         const double* restrict D,
-        int iter,
-        int N)
+        int N,
+        int iter)
 {
     double S, E;
     __m256d srcB;
@@ -25,7 +24,7 @@ triad_intrinsics(
             srcB = _mm256_loadu_pd(B+i);
             srcC = _mm256_loadu_pd(C+i);
             srcD = _mm256_loadu_pd(D+i);
-            dst = _mm256_fmadd_pd(srcB, srcC, srcD);
+            dst = _mm256_fmadd_pd(srcD, srcC, srcB);
             _mm256_store_pd(A+i, dst);
         }
     }

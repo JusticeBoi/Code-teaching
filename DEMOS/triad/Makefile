@@ -19,6 +19,7 @@ OBJ      += $(patsubst $(SRC_DIR)/%.cc, $(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*
 OBJ      += $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.cpp))
 OBJ      += $(patsubst $(SRC_DIR)/%.f90, $(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.f90))
 OBJ      += $(patsubst $(SRC_DIR)/%.F90, $(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.F90))
+OBJ      += $(patsubst $(SRC_DIR)/%.s, $(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.s))
 CPPFLAGS := $(CPPFLAGS) $(DEFINES) $(INCLUDES)
 
 
@@ -58,6 +59,10 @@ $(BUILD_DIR)/%.o:  %.f90
 $(BUILD_DIR)/%.o:  %.F90
 	@echo "===>  COMPILE  $@"
 	$(Q)$(FC) -c  $(CPPFLAGS)  $(FCFLAGS) $< -o $@
+
+$(BUILD_DIR)/%.o:  %.s
+	@echo "===>  ASSEMBLE  $@"
+	$(Q)$(AS)  $(ASFLAGS) $< -o $@
 
 tags:
 	@echo "===>  GENERATE  TAGS"
